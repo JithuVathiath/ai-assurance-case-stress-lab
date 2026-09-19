@@ -1,0 +1,762 @@
+{
+  "generatedAt": "2026-09-15T00:00:00.000Z",
+  "caseFingerprint": "e8e0c53cf3cf3ce0d200cdaceb466890d44da0fadc8b31f6c6d407d4a52578ad",
+  "baseline": {
+    "systemId": "CDS-UK-042",
+    "asOf": "2026-09-15",
+    "decision": "APPROVE_WITH_CONDITIONS",
+    "assuranceScore": 0.903,
+    "residualRisk": 26.5,
+    "controls": [
+      {
+        "id": "GOV-01",
+        "title": "Accountability and lifecycle risk management",
+        "score": 0.987,
+        "status": "PASS",
+        "criticality": 5,
+        "claims": [
+          {
+            "id": "CL-ACCOUNT",
+            "score": 0.983,
+            "evidence": [
+              {
+                "id": "EV-001",
+                "active": true,
+                "score": 0.808,
+                "contentHash": "34777f4a57224e06d8fbed511f2aa97724e42ca0862cea9fe16269507e88690e",
+                "reason": "active, internally produced evidence"
+              },
+              {
+                "id": "EV-002",
+                "active": true,
+                "score": 0.91,
+                "contentHash": "53b016809dc576f97a36839a2620e9a943f9fa15d091e64a59c626836644ca48",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": []
+          },
+          {
+            "id": "CL-RISK",
+            "score": 0.982,
+            "evidence": [
+              {
+                "id": "EV-002",
+                "active": true,
+                "score": 0.91,
+                "contentHash": "53b016809dc576f97a36839a2620e9a943f9fa15d091e64a59c626836644ca48",
+                "reason": "active, independent evidence"
+              },
+              {
+                "id": "EV-007",
+                "active": true,
+                "score": 0.8,
+                "contentHash": "315b68f46ff7f380769778d2906269a5c26819c3d17077cda24a79608ce75abc",
+                "reason": "active, internally produced evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "Accountable owner is assigned",
+            "path": "facts.governance.ownerAssigned",
+            "observed": true,
+            "expected": true,
+            "passed": true
+          },
+          {
+            "label": "Review cycle does not exceed 90 days",
+            "path": "facts.governance.reviewCycleDays",
+            "observed": 90,
+            "expected": 90,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 9",
+              "Article 17"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "GOVERN 1",
+              "MANAGE 1"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clauses 5-6",
+              "Clause 9"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DATA-02",
+        "title": "Data lineage and quality fitness",
+        "score": 0.875,
+        "status": "PASS",
+        "criticality": 4,
+        "claims": [
+          {
+            "id": "CL-DATA",
+            "score": 0.826,
+            "evidence": [
+              {
+                "id": "EV-003",
+                "active": true,
+                "score": 0.826,
+                "contentHash": "7141e2c2658cdd1ac9174eb2ae6a10943911b6242804a742638815c7cbf7adf5",
+                "reason": "active, internally produced evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "At least 95% feature lineage coverage",
+            "path": "facts.data.lineageCoverage",
+            "observed": 0.97,
+            "expected": 0.95,
+            "passed": true
+          },
+          {
+            "label": "Missingness stays below 2%",
+            "path": "facts.data.missingnessRate",
+            "observed": 0.018,
+            "expected": 0.02,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 10"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "MAP 2",
+              "MEASURE 2"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clause 8",
+              "Annex A data controls"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "FAIR-03",
+        "title": "Outcome equity, transparency, and contestability",
+        "score": 0.667,
+        "status": "AT_RISK",
+        "criticality": 5,
+        "claims": [
+          {
+            "id": "CL-FAIR",
+            "score": 0.516,
+            "evidence": [
+              {
+                "id": "EV-004",
+                "active": true,
+                "score": 0.89,
+                "contentHash": "d4c1b5372c0f1979b89d335b281f6a3f4abdb6c3799f1ec0094360f60c730bfa",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": [
+              "RB-SAMPLE"
+            ]
+          },
+          {
+            "id": "CL-EXPLAIN",
+            "score": 0.971,
+            "evidence": [
+              {
+                "id": "EV-011",
+                "active": true,
+                "score": 0.87,
+                "contentHash": "cf9052f5771b93b98ae4552aed97e893c6f34fc21c1cb1cb13f8811c896fc17b",
+                "reason": "active, independent evidence"
+              },
+              {
+                "id": "EV-005",
+                "active": true,
+                "score": 0.774,
+                "contentHash": "17d86908da3c17cd0ab0200ecb067f91cf38ed0443d8bbd54aed349d518437c8",
+                "reason": "active, internally produced evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "Parity ratio meets the internal 0.80 boundary",
+            "path": "facts.performance.demographicParityRatio",
+            "observed": 0.84,
+            "expected": 0.8,
+            "passed": true
+          },
+          {
+            "label": "Worst-group approval gap is no more than 10 points",
+            "path": "facts.performance.worstGroupApprovalGap",
+            "observed": 0.12,
+            "expected": 0.1,
+            "passed": false
+          },
+          {
+            "label": "At least 95% of appeal explanations are fulfilled",
+            "path": "facts.performance.appealExplanationFulfilment",
+            "observed": 0.97,
+            "expected": 0.95,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 10",
+              "Article 13",
+              "Article 86"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "MAP 3",
+              "MEASURE 2.11"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clause 8",
+              "Annex A impact controls"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "HUM-04",
+        "title": "Effective human oversight and stop authority",
+        "score": 0.987,
+        "status": "PASS",
+        "criticality": 5,
+        "claims": [
+          {
+            "id": "CL-HUMAN",
+            "score": 0.982,
+            "evidence": [
+              {
+                "id": "EV-005",
+                "active": true,
+                "score": 0.774,
+                "contentHash": "17d86908da3c17cd0ab0200ecb067f91cf38ed0443d8bbd54aed349d518437c8",
+                "reason": "active, internally produced evidence"
+              },
+              {
+                "id": "EV-006",
+                "active": true,
+                "score": 0.92,
+                "contentHash": "6b8e235fa9236d46fea359f4910607db692e67f6a2aa47a0331a3792a57566c0",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "Human override remains available",
+            "path": "facts.oversight.overrideAvailable",
+            "observed": true,
+            "expected": true,
+            "passed": true
+          },
+          {
+            "label": "Oversight drill pass rate is at least 90%",
+            "path": "facts.oversight.drillPassRate",
+            "observed": 0.94,
+            "expected": 0.9,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 14"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "GOVERN 3",
+              "MEASURE 2.8"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clauses 5 and 7",
+              "Annex A human oversight controls"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MON-05",
+        "title": "Post-deployment monitoring and incident response",
+        "score": 0.983,
+        "status": "PASS",
+        "criticality": 4,
+        "claims": [
+          {
+            "id": "CL-MONITOR",
+            "score": 0.976,
+            "evidence": [
+              {
+                "id": "EV-007",
+                "active": true,
+                "score": 0.8,
+                "contentHash": "315b68f46ff7f380769778d2906269a5c26819c3d17077cda24a79608ce75abc",
+                "reason": "active, internally produced evidence"
+              },
+              {
+                "id": "EV-008",
+                "active": true,
+                "score": 0.88,
+                "contentHash": "9584ab1179cb2abcb4e0fdf0675708fa552d4a79b85d17ccd560a76fa46bfec0",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "Material alerts are reviewed within seven days",
+            "path": "facts.monitoring.alertLatencyDays",
+            "observed": 5,
+            "expected": 7,
+            "passed": true
+          },
+          {
+            "label": "No critical incident remains open",
+            "path": "facts.monitoring.openCriticalIncidents",
+            "observed": 0,
+            "expected": 0,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 72",
+              "Article 73"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "MEASURE 4",
+              "MANAGE 4"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clauses 9-10"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SEC-06",
+        "title": "Robustness, calibration, and adversarial resilience",
+        "score": 0.939,
+        "status": "PASS",
+        "criticality": 4,
+        "claims": [
+          {
+            "id": "CL-SECURITY",
+            "score": 0.9,
+            "evidence": [
+              {
+                "id": "EV-009",
+                "active": true,
+                "score": 0.9,
+                "contentHash": "6a813ebe69b4e20dc39f7feb38c8eccfa2a8120e214b24aa29c44708d1ce31b5",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": []
+          },
+          {
+            "id": "CL-ROBUST",
+            "score": 0.93,
+            "evidence": [
+              {
+                "id": "EV-010",
+                "active": true,
+                "score": 0.93,
+                "contentHash": "b3fa748ecb27ad883c61493407098fb2a8181c203095c585f072887a394a008d",
+                "reason": "active, independent evidence"
+              }
+            ],
+            "openRebuttals": []
+          }
+        ],
+        "facts": [
+          {
+            "label": "Adversarial-suite pass rate is at least 85%",
+            "path": "facts.security.adversarialTestPassRate",
+            "observed": 0.91,
+            "expected": 0.85,
+            "passed": true
+          },
+          {
+            "label": "Robustness-suite pass rate is at least 85%",
+            "path": "facts.performance.robustnessPassRate",
+            "observed": 0.88,
+            "expected": 0.85,
+            "passed": true
+          },
+          {
+            "label": "Expected calibration error is no more than 5%",
+            "path": "facts.performance.calibrationError",
+            "observed": 0.041,
+            "expected": 0.05,
+            "passed": true
+          }
+        ],
+        "mappings": [
+          {
+            "framework": "EU AI Act",
+            "references": [
+              "Article 15"
+            ]
+          },
+          {
+            "framework": "NIST AI RMF",
+            "references": [
+              "MEASURE 2",
+              "MANAGE 2"
+            ]
+          },
+          {
+            "framework": "ISO/IEC 42001",
+            "references": [
+              "Clause 8",
+              "Annex A system controls"
+            ]
+          }
+        ]
+      }
+    ],
+    "frameworkCoverage": {
+      "EU AI Act": 0.903,
+      "NIST AI RMF": 0.903,
+      "ISO/IEC 42001": 0.903
+    },
+    "blockingReasons": [],
+    "conditions": [
+      "Strengthen FAIR-03: Outcome equity, transparency, and contestability"
+    ]
+  },
+  "shocks": [
+    {
+      "id": "SH-EVIDENCE",
+      "title": "Correlated assurance-evidence loss",
+      "kind": "single",
+      "decision": "HALT",
+      "assuranceScore": 0.77,
+      "residualRisk": 32.6,
+      "riskDelta": 6.1,
+      "failedControls": [
+        "DATA-02",
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-DRIFT",
+      "title": "Demographic outcome drift",
+      "kind": "single",
+      "decision": "HALT",
+      "assuranceScore": 0.854,
+      "residualRisk": 28.7,
+      "riskDelta": 2.2,
+      "failedControls": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-OVERSIGHT",
+      "title": "Human-override degradation",
+      "kind": "single",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.85,
+      "residualRisk": 28.9,
+      "riskDelta": 2.4,
+      "failedControls": []
+    },
+    {
+      "id": "SH-INCIDENT",
+      "title": "Uncontained critical incident",
+      "kind": "single",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.862,
+      "residualRisk": 46.3,
+      "riskDelta": 19.8,
+      "failedControls": []
+    },
+    {
+      "id": "SH-ATTACK",
+      "title": "Adversarial robustness collapse",
+      "kind": "single",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.876,
+      "residualRisk": 27.7,
+      "riskDelta": 1.2,
+      "failedControls": []
+    },
+    {
+      "id": "SH-EVIDENCE+SH-DRIFT",
+      "title": "Correlated assurance-evidence loss + Demographic outcome drift",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.752,
+      "residualRisk": 33.4,
+      "riskDelta": 6.9,
+      "failedControls": [
+        "DATA-02",
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-EVIDENCE+SH-OVERSIGHT",
+      "title": "Correlated assurance-evidence loss + Human-override degradation",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.716,
+      "residualRisk": 35.1,
+      "riskDelta": 8.6,
+      "failedControls": [
+        "DATA-02",
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-EVIDENCE+SH-INCIDENT",
+      "title": "Correlated assurance-evidence loss + Uncontained critical incident",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.728,
+      "residualRisk": 52.5,
+      "riskDelta": 26,
+      "failedControls": [
+        "DATA-02",
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-EVIDENCE+SH-ATTACK",
+      "title": "Correlated assurance-evidence loss + Adversarial robustness collapse",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.742,
+      "residualRisk": 33.9,
+      "riskDelta": 7.4,
+      "failedControls": [
+        "DATA-02",
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-DRIFT+SH-OVERSIGHT",
+      "title": "Demographic outcome drift + Human-override degradation",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.8,
+      "residualRisk": 31.2,
+      "riskDelta": 4.7,
+      "failedControls": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-DRIFT+SH-INCIDENT",
+      "title": "Demographic outcome drift + Uncontained critical incident",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.813,
+      "residualRisk": 48.6,
+      "riskDelta": 22.1,
+      "failedControls": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-DRIFT+SH-ATTACK",
+      "title": "Demographic outcome drift + Adversarial robustness collapse",
+      "kind": "compound",
+      "decision": "HALT",
+      "assuranceScore": 0.826,
+      "residualRisk": 30,
+      "riskDelta": 3.5,
+      "failedControls": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "id": "SH-OVERSIGHT+SH-INCIDENT",
+      "title": "Human-override degradation + Uncontained critical incident",
+      "kind": "compound",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.808,
+      "residualRisk": 48.8,
+      "riskDelta": 22.3,
+      "failedControls": []
+    },
+    {
+      "id": "SH-OVERSIGHT+SH-ATTACK",
+      "title": "Human-override degradation + Adversarial robustness collapse",
+      "kind": "compound",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.822,
+      "residualRisk": 30.2,
+      "riskDelta": 3.7,
+      "failedControls": []
+    },
+    {
+      "id": "SH-INCIDENT+SH-ATTACK",
+      "title": "Uncontained critical incident + Adversarial robustness collapse",
+      "kind": "compound",
+      "decision": "APPROVE_WITH_CONDITIONS",
+      "assuranceScore": 0.834,
+      "residualRisk": 47.6,
+      "riskDelta": 21.1,
+      "failedControls": []
+    }
+  ],
+  "evidenceCriticality": [
+    {
+      "evidenceId": "EV-003",
+      "title": "Feature-level data lineage export",
+      "riskDelta": 4,
+      "decisionChanged": true,
+      "controlsAffected": [
+        "DATA-02"
+      ]
+    },
+    {
+      "evidenceId": "EV-009",
+      "title": "Independent adversarial security assessment",
+      "riskDelta": 2.2,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "SEC-06"
+      ]
+    },
+    {
+      "evidenceId": "EV-010",
+      "title": "Robustness and calibration evaluation",
+      "riskDelta": 2.2,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "SEC-06"
+      ]
+    },
+    {
+      "evidenceId": "EV-004",
+      "title": "External subgroup outcome audit",
+      "riskDelta": 2,
+      "decisionChanged": true,
+      "controlsAffected": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "evidenceId": "EV-006",
+      "title": "Observed human-override simulation",
+      "riskDelta": 1.2,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "HUM-04"
+      ]
+    },
+    {
+      "evidenceId": "EV-002",
+      "title": "Independent AI impact assessment",
+      "riskDelta": 1,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "GOV-01"
+      ]
+    },
+    {
+      "evidenceId": "EV-008",
+      "title": "Incident-response tabletop exercise",
+      "riskDelta": 0.8,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "MON-05"
+      ]
+    },
+    {
+      "evidenceId": "EV-007",
+      "title": "Production monitoring specification",
+      "riskDelta": 0.7,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "GOV-01",
+        "MON-05"
+      ]
+    },
+    {
+      "evidenceId": "EV-005",
+      "title": "Underwriter override operating procedure",
+      "riskDelta": 0.5,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "FAIR-03",
+        "HUM-04"
+      ]
+    },
+    {
+      "evidenceId": "EV-011",
+      "title": "Applicant explanation and appeal study",
+      "riskDelta": 0.3,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "FAIR-03"
+      ]
+    },
+    {
+      "evidenceId": "EV-001",
+      "title": "Accountability and RACI approval record",
+      "riskDelta": 0.1,
+      "decisionChanged": false,
+      "controlsAffected": [
+        "GOV-01"
+      ]
+    }
+  ]
+}

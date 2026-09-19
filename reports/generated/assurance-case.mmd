@@ -1,0 +1,36 @@
+flowchart LR
+  DECISION["APPROVE_WITH_CONDITIONS<br/>Risk 26.5/100"]
+  GOV_01["GOV-01<br/>PASS 99%"] --> DECISION
+  CL_ACCOUNT["CL-ACCOUNT"] --> GOV_01
+  EV_001[("EV-001<br/>active")] --> CL_ACCOUNT
+  EV_002[("EV-002<br/>active")] --> CL_ACCOUNT
+  CL_RISK["CL-RISK"] --> GOV_01
+  EV_002[("EV-002<br/>active")] --> CL_RISK
+  EV_007[("EV-007<br/>active")] --> CL_RISK
+  DATA_02["DATA-02<br/>PASS 88%"] --> DECISION
+  CL_DATA["CL-DATA"] --> DATA_02
+  EV_003[("EV-003<br/>active")] --> CL_DATA
+  FAIR_03["FAIR-03<br/>AT_RISK 67%"] --> DECISION
+  CL_FAIR["CL-FAIR"] --> FAIR_03
+  EV_004[("EV-004<br/>active")] --> CL_FAIR
+  CL_EXPLAIN["CL-EXPLAIN"] --> FAIR_03
+  EV_011[("EV-011<br/>active")] --> CL_EXPLAIN
+  EV_005[("EV-005<br/>active")] --> CL_EXPLAIN
+  HUM_04["HUM-04<br/>PASS 99%"] --> DECISION
+  CL_HUMAN["CL-HUMAN"] --> HUM_04
+  EV_005[("EV-005<br/>active")] --> CL_HUMAN
+  EV_006[("EV-006<br/>active")] --> CL_HUMAN
+  MON_05["MON-05<br/>PASS 98%"] --> DECISION
+  CL_MONITOR["CL-MONITOR"] --> MON_05
+  EV_007[("EV-007<br/>active")] --> CL_MONITOR
+  EV_008[("EV-008<br/>active")] --> CL_MONITOR
+  SEC_06["SEC-06<br/>PASS 94%"] --> DECISION
+  CL_SECURITY["CL-SECURITY"] --> SEC_06
+  EV_009[("EV-009<br/>active")] --> CL_SECURITY
+  CL_ROBUST["CL-ROBUST"] --> SEC_06
+  EV_010[("EV-010<br/>active")] --> CL_ROBUST
+  classDef pass fill:#d1fae5,stroke:#047857,color:#064e3b
+  classDef risk fill:#fef3c7,stroke:#b45309,color:#78350f
+  classDef fail fill:#fee2e2,stroke:#b91c1c,color:#7f1d1d
+  class GOV_01,DATA_02,HUM_04,MON_05,SEC_06 pass
+  class FAIR_03 risk

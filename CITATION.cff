@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it using these metadata."
+title: "AI Assurance Case Stress Lab"
+type: software
+authors:
+  - family-names: "Biju"
+    given-names: "Jithu Vathiath"
+version: 1.0.0
+date-released: 2026-09-19
+license: MIT
+repository-code: "https://github.com/JithuVathiath/ai-assurance-case-stress-lab"

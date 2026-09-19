@@ -1,0 +1,26 @@
+{
+  "name": "ai-assurance-case-stress-lab",
+  "version": "1.0.0",
+  "description": "Evidence-linked AI assurance cases with counterfactual governance stress testing.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "audit": "node src/cli.ts audit examples/credit-decisioning-ai.json --out reports/generated",
+    "check": "node scripts/validate.mjs && node --test tests/*.test.ts && node src/cli.ts audit examples/credit-decisioning-ai.json --out .tmp/audit && node scripts/compare-results.mjs",
+    "test": "node --test tests/*.test.ts",
+    "validate": "node scripts/validate.mjs"
+  },
+  "keywords": [
+    "ai-governance",
+    "assurance-case",
+    "eu-ai-act",
+    "nist-ai-rmf",
+    "model-risk",
+    "policy-as-code"
+  ],
+  "license": "MIT",
+  "author": "Jithu Vathiath Biju"
+}

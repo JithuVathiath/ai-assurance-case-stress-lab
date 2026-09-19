@@ -1,0 +1,16 @@
+scenario_id,title,kind,decision,assurance_score,residual_risk,risk_delta,failed_controls
+SH-EVIDENCE,Correlated assurance-evidence loss,single,HALT,0.77,32.6,6.1,DATA-02;FAIR-03
+SH-DRIFT,Demographic outcome drift,single,HALT,0.854,28.7,2.2,FAIR-03
+SH-OVERSIGHT,Human-override degradation,single,APPROVE_WITH_CONDITIONS,0.85,28.9,2.4,
+SH-INCIDENT,Uncontained critical incident,single,APPROVE_WITH_CONDITIONS,0.862,46.3,19.8,
+SH-ATTACK,Adversarial robustness collapse,single,APPROVE_WITH_CONDITIONS,0.876,27.7,1.2,
+SH-EVIDENCE+SH-DRIFT,Correlated assurance-evidence loss + Demographic outcome drift,compound,HALT,0.752,33.4,6.9,DATA-02;FAIR-03
+SH-EVIDENCE+SH-OVERSIGHT,Correlated assurance-evidence loss + Human-override degradation,compound,HALT,0.716,35.1,8.6,DATA-02;FAIR-03
+SH-EVIDENCE+SH-INCIDENT,Correlated assurance-evidence loss + Uncontained critical incident,compound,HALT,0.728,52.5,26,DATA-02;FAIR-03
+SH-EVIDENCE+SH-ATTACK,Correlated assurance-evidence loss + Adversarial robustness collapse,compound,HALT,0.742,33.9,7.4,DATA-02;FAIR-03
+SH-DRIFT+SH-OVERSIGHT,Demographic outcome drift + Human-override degradation,compound,HALT,0.8,31.2,4.7,FAIR-03
+SH-DRIFT+SH-INCIDENT,Demographic outcome drift + Uncontained critical incident,compound,HALT,0.813,48.6,22.1,FAIR-03
+SH-DRIFT+SH-ATTACK,Demographic outcome drift + Adversarial robustness collapse,compound,HALT,0.826,30,3.5,FAIR-03
+SH-OVERSIGHT+SH-INCIDENT,Human-override degradation + Uncontained critical incident,compound,APPROVE_WITH_CONDITIONS,0.808,48.8,22.3,
+SH-OVERSIGHT+SH-ATTACK,Human-override degradation + Adversarial robustness collapse,compound,APPROVE_WITH_CONDITIONS,0.822,30.2,3.7,
+SH-INCIDENT+SH-ATTACK,Uncontained critical incident + Adversarial robustness collapse,compound,APPROVE_WITH_CONDITIONS,0.834,47.6,21.1,

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AI Assurance Case Stress Lab governance shock map</title>
+  <desc id="desc">An evidence-to-decision pipeline surrounded by five governance shocks and measured results.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071426"/>
+      <stop offset="1" stop-color="#10243d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#20c997"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.22"/></filter>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <circle cx="1090" cy="65" r="150" fill="#38bdf8" opacity="0.05"/>
+  <circle cx="80" cy="590" r="180" fill="#20c997" opacity="0.05"/>
+
+  <text x="64" y="72" fill="#e8f1fb" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="700">AI Assurance Case Stress Lab</text>
+  <text x="64" y="106" fill="#98abc1" font-family="Inter,Arial,sans-serif" font-size="17">Falsify the approval—not just complete the checklist.</text>
+  <rect x="64" y="126" width="1072" height="3" rx="2" fill="url(#accent)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="168" width="190" height="108" rx="16" fill="#142b46" stroke="#315170"/>
+    <text x="86" y="199" fill="#7dd3fc" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">INPUT</text>
+    <text x="86" y="231" fill="#f1f5f9" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700">Evidence</text>
+    <text x="86" y="256" fill="#9fb2c7" font-family="Inter,Arial,sans-serif" font-size="14">11 hashed artifacts</text>
+
+    <rect x="286" y="168" width="190" height="108" rx="16" fill="#142b46" stroke="#315170"/>
+    <text x="308" y="199" fill="#7dd3fc" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">ARGUMENT</text>
+    <text x="308" y="231" fill="#f1f5f9" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700">Claims</text>
+    <text x="308" y="256" fill="#9fb2c7" font-family="Inter,Arial,sans-serif" font-size="14">9 claims + rebuttals</text>
+
+    <rect x="508" y="168" width="190" height="108" rx="16" fill="#142b46" stroke="#315170"/>
+    <text x="530" y="199" fill="#7dd3fc" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">POLICY</text>
+    <text x="530" y="231" fill="#f1f5f9" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700">Controls</text>
+    <text x="530" y="256" fill="#9fb2c7" font-family="Inter,Arial,sans-serif" font-size="14">6 executable controls</text>
+
+    <rect x="730" y="158" width="210" height="128" rx="18" fill="#103b3c" stroke="#20c997" stroke-width="2"/>
+    <text x="753" y="192" fill="#6ee7b7" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">BASELINE</text>
+    <text x="753" y="226" fill="#ecfdf5" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">Conditional Approval</text>
+    <text x="753" y="254" fill="#a7f3d0" font-family="Inter,Arial,sans-serif" font-size="14">90.3% assurance · Risk 26.5</text>
+  </g>
+
+  <g stroke="#5f7893" stroke-width="2" fill="none">
+    <path d="M254 222h32"/><path d="M476 222h32"/><path d="M698 222h32"/>
+  </g>
+  <g fill="#7dd3fc"><path d="M282 216l8 6-8 6z"/><path d="M504 216l8 6-8 6z"/><path d="M726 216l8 6-8 6z"/></g>
+
+  <text x="64" y="335" fill="#e8f1fb" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700">GOVERNANCE SHOCKS</text>
+  <g font-family="Inter,Arial,sans-serif">
+    <rect x="64" y="356" width="200" height="72" rx="13" fill="#231f38" stroke="#7c3aed"/>
+    <text x="84" y="385" fill="#c4b5fd" font-size="14" font-weight="700">Evidence Loss</text>
+    <text x="84" y="408" fill="#a9a2bf" font-size="12">lineage + fairness audit</text>
+
+    <rect x="282" y="356" width="200" height="72" rx="13" fill="#2d2530" stroke="#db2777"/>
+    <text x="302" y="385" fill="#f9a8d4" font-size="14" font-weight="700">Outcome Drift</text>
+    <text x="302" y="408" fill="#bda7b3" font-size="12">parity boundary breached</text>
+
+    <rect x="500" y="356" width="200" height="72" rx="13" fill="#302a20" stroke="#d97706"/>
+    <text x="520" y="385" fill="#fcd34d" font-size="14" font-weight="700">Oversight Failure</text>
+    <text x="520" y="408" fill="#beb29b" font-size="12">override channel unavailable</text>
+
+    <rect x="718" y="356" width="200" height="72" rx="13" fill="#30211f" stroke="#ef4444"/>
+    <text x="738" y="385" fill="#fca5a5" font-size="14" font-weight="700">Critical Incident</text>
+    <text x="738" y="408" fill="#c0a4a1" font-size="12">response latency degrades</text>
+
+    <rect x="936" y="356" width="200" height="72" rx="13" fill="#1a2d3b" stroke="#0ea5e9"/>
+    <text x="956" y="385" fill="#7dd3fc" font-size="14" font-weight="700">Attack Collapse</text>
+    <text x="956" y="408" fill="#9cb4c4" font-size="12">robustness tests fail</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="474" width="1072" height="102" rx="18" fill="#0d1c30" stroke="#294563"/>
+    <text x="88" y="505" fill="#7dd3fc" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.4">MEASURED STRESS SUITE</text>
+    <text x="88" y="547" fill="#ffffff" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">15</text>
+    <text x="132" y="546" fill="#98abc1" font-family="Inter,Arial,sans-serif" font-size="14">scenarios</text>
+    <text x="318" y="547" fill="#fb7185" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">9</text>
+    <text x="345" y="546" fill="#98abc1" font-family="Inter,Arial,sans-serif" font-size="14">force HALT</text>
+    <text x="552" y="547" fill="#fbbf24" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">+26.0</text>
+    <text x="640" y="546" fill="#98abc1" font-family="Inter,Arial,sans-serif" font-size="14">largest risk delta</text>
+    <text x="876" y="547" fill="#34d399" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">SHA-256</text>
+    <text x="1014" y="546" fill="#98abc1" font-family="Inter,Arial,sans-serif" font-size="14">audit chain</text>
+  </g>
+  <text x="64" y="607" fill="#607991" font-family="Inter,Arial,sans-serif" font-size="12">Synthetic case · deterministic output · zero runtime dependencies · not legal advice</text>
+</svg>
