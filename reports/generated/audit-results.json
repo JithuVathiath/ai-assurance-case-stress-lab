@@ -758,5 +758,581 @@
         "GOV-01"
       ]
     }
-  ]
+  ],
+  "research": {
+    "minimalEvidenceCutSets": [
+      {
+        "evidenceIds": [
+          "EV-003"
+        ],
+        "size": 1,
+        "residualRisk": 30.5,
+        "failedControls": [
+          "DATA-02"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "EV-004"
+        ],
+        "size": 1,
+        "residualRisk": 28.5,
+        "failedControls": [
+          "FAIR-03"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "EV-005",
+          "EV-006"
+        ],
+        "size": 2,
+        "residualRisk": 32.7,
+        "failedControls": [
+          "HUM-04"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "EV-005",
+          "EV-011"
+        ],
+        "size": 2,
+        "residualRisk": 28.8,
+        "failedControls": [
+          "FAIR-03"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "EV-007",
+          "EV-008"
+        ],
+        "size": 2,
+        "residualRisk": 31.5,
+        "failedControls": [
+          "MON-05"
+        ]
+      },
+      {
+        "evidenceIds": [
+          "EV-009",
+          "EV-010"
+        ],
+        "size": 2,
+        "residualRisk": 30.9,
+        "failedControls": [
+          "SEC-06"
+        ]
+      }
+    ],
+    "policySensitivity": {
+      "configurationsPerScenario": 27,
+      "scenarios": [
+        "baseline",
+        "critical-incident"
+      ],
+      "decisionCounts": {
+        "APPROVE": 0,
+        "APPROVE_WITH_CONDITIONS": 48,
+        "HALT": 6
+      },
+      "assuranceRange": [
+        0.846,
+        0.923
+      ],
+      "residualRiskRange": [
+        20,
+        52.2
+      ],
+      "cells": [
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 32.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 32.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 32.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 27.2
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 27.2
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 27.2
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 21.8
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 21.8
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.888,
+          "residualRisk": 21.8
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 31.9
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 31.9
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 31.9
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 26.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 26.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 26.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 21
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 21
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.903,
+          "residualRisk": 21
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 31.1
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 31.1
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 31.1
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 25.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 25.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 25.5
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 20
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 20
+        },
+        {
+          "scenario": "baseline",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.923,
+          "residualRisk": 20
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.846,
+          "residualRisk": 52.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 52.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 52.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.846,
+          "residualRisk": 47.1
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 47.1
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 47.1
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 42
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 42
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.75,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.846,
+          "residualRisk": 42
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.862,
+          "residualRisk": 51.5
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 51.5
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 51.5
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.862,
+          "residualRisk": 46.3
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 46.3
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 46.3
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 41.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 41.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 0.86,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.862,
+          "residualRisk": 41.2
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.882,
+          "residualRisk": 50.7
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 50.7
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 40,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 50.7
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 45,
+          "decision": "HALT",
+          "assuranceScore": 0.882,
+          "residualRisk": 45.4
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 45.4
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 46,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 45.4
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 45,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 40.1
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 55,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 40.1
+        },
+        {
+          "scenario": "critical-incident",
+          "internalEvidenceDiscount": 1,
+          "riskReductionScale": 52,
+          "haltRiskThreshold": 65,
+          "decision": "APPROVE_WITH_CONDITIONS",
+          "assuranceScore": 0.882,
+          "residualRisk": 40.1
+        }
+      ]
+    }
+  }
 }

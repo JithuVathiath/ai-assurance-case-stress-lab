@@ -7,11 +7,22 @@ import type {
   ControlAssessment,
   ControlStatus,
   Evaluation,
+  EvaluationPolicy,
   Evidence,
   EvidenceAssessment,
   FactAssessment,
   Severity,
 } from "./types.ts";
+
+export const DEFAULT_POLICY: EvaluationPolicy = Object.freeze({
+  internalEvidenceDiscount: 0.86,
+  claimWeight: 0.72,
+  factWeight: 0.28,
+  riskReductionScale: 46,
+  haltRiskThreshold: 65,
+  conditionalRiskThreshold: 38,
+  criticalControlFloor: 4,
+});
 
 const rebuttalPenalty: Record<Severity, number> = {
   low: 0.92,
@@ -36,12 +47,16 @@ function getPath(root: unknown, path: string): unknown {
   }, root);
 }
 
-function assessEvidence(evidence: Evidence, asOf: string): EvidenceAssessment {
+function assessEvidence(
+  evidence: Evidence,
+  asOf: string,
+  policy: EvaluationPolicy,
+): EvidenceAssessment {
   const unavailable = Boolean(evidence.unavailable);
   const expired = evidence.validUntil < asOf;
   const notIssued = evidence.issuedAt > asOf;
   const active = !unavailable && !expired && !notIssued;
-  const independence = evidence.independent ? 1 : 0.86;
+  const independence = evidence.independent ? 1 : policy.internalEvidenceDiscount;
   const score = active ? evidence.confidence * independence : 0;
   const reason = unavailable
     ? "unavailable"
@@ -65,6 +80,7 @@ function assessClaim(
   claim: Claim,
   evidenceById: Map<string, Evidence>,
   asOf: string,
+  policy: EvaluationPolicy,
 ): ClaimAssessment {
   const evidence = claim.evidenceIds.map((id) => {
     const item = evidenceById.get(id);
@@ -77,7 +93,7 @@ function assessClaim(
         reason: "evidence record missing",
       };
     }
-    return assessEvidence(item, asOf);
+    return assessEvidence(item, asOf, policy);
   });
   const activeScores = evidence.filter((item) => item.active).map((item) => item.score);
   const support = activeScores.length
@@ -131,13 +147,14 @@ function assessControl(
   evidenceById: Map<string, Evidence>,
   factsRoot: Record<string, unknown>,
   asOf: string,
+  policy: EvaluationPolicy,
 ): ControlAssessment {
   const claims = control.claimIds.map((id) => {
     const claim = claimsById.get(id);
     if (!claim) {
       return { id, score: 0, evidence: [], openRebuttals: ["MISSING_CLAIM"] };
     }
-    return assessClaim(claim, evidenceById, asOf);
+    return assessClaim(claim, evidenceById, asOf, policy);
   });
   const weighted = claims.reduce((sum, assessment) => {
     const weight = claimsById.get(assessment.id)?.weight ?? 1;
@@ -152,7 +169,7 @@ function assessControl(
   const factScore = facts.length
     ? facts.filter((item) => item.passed).length / facts.length
     : 1;
-  const score = round(claimScore * 0.72 + factScore * 0.28);
+  const score = round(claimScore * policy.claimWeight + factScore * policy.factWeight);
   return {
     id: control.id,
     title: control.title,
@@ -165,12 +182,18 @@ function assessControl(
   };
 }
 
-export function evaluate(input: AISystemCase): Evaluation {
+export function evaluate(
+  input: AISystemCase,
+  policy: EvaluationPolicy = DEFAULT_POLICY,
+): Evaluation {
+  if (Math.abs(policy.claimWeight + policy.factWeight - 1) > 1e-9) {
+    throw new Error("Claim and fact weights must sum to one");
+  }
   const claimsById = new Map(input.claims.map((item) => [item.id, item]));
   const evidenceById = new Map(input.evidence.map((item) => [item.id, item]));
   const factsRoot = { system: input.system, facts: input.facts };
   const controls = input.controls.map((control) =>
-    assessControl(control, claimsById, evidenceById, factsRoot, input.asOf),
+    assessControl(control, claimsById, evidenceById, factsRoot, input.asOf, policy),
   );
   const criticalityTotal = controls.reduce((sum, item) => sum + item.criticality, 0);
   const assuranceScore = round(
@@ -181,22 +204,33 @@ export function evaluate(input: AISystemCase): Evaluation {
     .filter((item) => item.open)
     .reduce((sum, item) => sum + incidentPenalty[item.severity], 0);
   const residualRisk = round(
-    Math.min(100, Math.max(0, input.system.inherentRisk - assuranceScore * 46 + openIncidentCost)),
+    Math.min(
+      100,
+      Math.max(
+        0,
+        input.system.inherentRisk - assuranceScore * policy.riskReductionScale + openIncidentCost,
+      ),
+    ),
     1,
   );
   const criticalFailures = controls.filter(
-    (item) => item.status === "FAIL" && item.criticality >= 4,
+    (item) => item.status === "FAIL" && item.criticality >= policy.criticalControlFloor,
   );
   const decision =
-    criticalFailures.length > 0 || residualRisk >= 65
+    criticalFailures.length > 0 || residualRisk >= policy.haltRiskThreshold
       ? "HALT"
-      : controls.some((item) => item.status !== "PASS") || residualRisk >= 38
+      : controls.some((item) => item.status !== "PASS") ||
+          residualRisk >= policy.conditionalRiskThreshold
         ? "APPROVE_WITH_CONDITIONS"
         : "APPROVE";
   const blockingReasons = criticalFailures.map(
     (item) => `${item.id}: ${item.title} failed at ${item.score}`,
   );
-  if (residualRisk >= 65) blockingReasons.push(`Residual risk ${residualRisk} exceeds 65`);
+  if (residualRisk >= policy.haltRiskThreshold) {
+    blockingReasons.push(
+      `Residual risk ${residualRisk} reaches ${policy.haltRiskThreshold}`,
+    );
+  }
   const conditions = controls
     .filter((item) => item.status === "AT_RISK")
     .map((item) => `Strengthen ${item.id}: ${item.title}`);

@@ -16,6 +16,7 @@ function buildMarkdown(input: AISystemCase, bundle: AuditBundle): string {
   const failed = bundle.shocks.filter((item) => item.decision === "HALT");
   const worst = [...bundle.shocks].sort((a, b) => b.residualRisk - a.residualRisk)[0];
   const topEvidence = bundle.evidenceCriticality.slice(0, 5);
+  const sensitivity = bundle.research.policySensitivity;
   return `# Assurance Decision Report
 
 > Deterministic portfolio demonstration. This is not legal advice, a conformity
@@ -88,6 +89,34 @@ ${topEvidence
   )
   .join("\n")}
 
+## Minimal Evidence Cut Sets
+
+A cut set is the smallest set of unavailable evidence records that forces a
+\`HALT\`; no proper subset has the same effect. Searching all single and pairwise
+evidence removals found **${bundle.research.minimalEvidenceCutSets.length}**
+minimal cut sets.
+
+| Evidence Cut Set | Size | Residual Risk | Failed Controls |
+| --- | ---: | ---: | --- |
+${bundle.research.minimalEvidenceCutSets
+  .map(
+    (item) =>
+      `| ${item.evidenceIds.join(" + ")} | ${item.size} | ${item.residualRisk} | ${item.failedControls.join(", ") || "Risk threshold"} |`,
+  )
+  .join("\n")}
+
+## Policy Sensitivity Experiment
+
+The same cases were evaluated across **${sensitivity.configurationsPerScenario} policy configurations per scenario** (${sensitivity.cells.length} total). The grid varies the internal-evidence discount, risk-reduction scale, and halt threshold rather than hiding these normative choices inside one score.
+
+| Outcome Across Grid | Count |
+| --- | ---: |
+${Object.entries(sensitivity.decisionCounts)
+  .map(([decision, count]) => `| ${decision} | ${count} |`)
+  .join("\n")}
+
+Assurance ranges from **${percent(sensitivity.assuranceRange[0])} to ${percent(sensitivity.assuranceRange[1])}** and residual risk from **${sensitivity.residualRiskRange[0]} to ${sensitivity.residualRiskRange[1]}**. The complete grid is committed as \`policy-sensitivity.csv\` so reviewers can inspect every configuration.
+
 ## Interpretation
 
 The lab models governance as a falsifiable assurance argument. A control only
@@ -156,6 +185,13 @@ export async function writeReports(
         halted: bundle.shocks.filter((item) => item.decision === "HALT").length,
       },
     },
+    {
+      event: "RESEARCH_ANALYSIS_COMPLETED",
+      payload: {
+        minimalCutSets: bundle.research.minimalEvidenceCutSets.length,
+        policyConfigurations: bundle.research.policySensitivity.cells.length,
+      },
+    },
   ]);
   const ledgerCheck = verifyLedger(ledger);
   if (!ledgerCheck.valid) throw new Error(ledgerCheck.error);
@@ -173,6 +209,26 @@ export async function writeReports(
       item.failedControls.join(";"),
     ]),
   ];
+  const sensitivityRows = [
+    [
+      "scenario",
+      "internal_evidence_discount",
+      "risk_reduction_scale",
+      "halt_risk_threshold",
+      "decision",
+      "assurance_score",
+      "residual_risk",
+    ],
+    ...bundle.research.policySensitivity.cells.map((item) => [
+      item.scenario,
+      item.internalEvidenceDiscount,
+      item.riskReductionScale,
+      item.haltRiskThreshold,
+      item.decision,
+      item.assuranceScore,
+      item.residualRisk,
+    ]),
+  ];
 
   await Promise.all([
     writeFile(join(outputDirectory, "audit-results.json"), `${JSON.stringify(bundle, null, 2)}\n`),
@@ -181,6 +237,10 @@ export async function writeReports(
     writeFile(
       join(outputDirectory, "stress-matrix.csv"),
       `${csvRows.map((row) => row.map(escapeCsv).join(",")).join("\n")}\n`,
+    ),
+    writeFile(
+      join(outputDirectory, "policy-sensitivity.csv"),
+      `${sensitivityRows.map((row) => row.map(escapeCsv).join(",")).join("\n")}\n`,
     ),
     writeFile(
       join(outputDirectory, "audit-ledger.jsonl"),

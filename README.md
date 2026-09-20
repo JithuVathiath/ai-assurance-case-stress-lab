@@ -35,6 +35,8 @@ no placeholder metrics.
 | Single + pairwise compound shocks | **5 + 10** |
 | Scenarios forcing `HALT` | **9 / 15** |
 | Largest simulated risk increase | **+26.0 points** |
+| Minimal one- or two-evidence cut sets | **6** |
+| Policy-sensitivity evaluations | **54** |
 
 The top decision-critical artifact is the feature-level lineage export: losing
 it alone changes the decision from conditional approval to `HALT`. That result
@@ -50,6 +52,11 @@ comes from leave-one-evidence-out evaluation, not a manually assigned label.
   weaknesses that single-scenario testing misses.
 - **Decision-critical evidence.** Each artifact is removed in turn to quantify
   its marginal effect on residual risk and deployment status.
+- **Minimal cut-set discovery.** The engine exhaustively searches all single and
+  pairwise evidence failures and retains only irreducible paths to `HALT`.
+- **Normative sensitivity analysis.** Fifty-four evaluations expose how internal-
+  evidence discounts, risk-reduction assumptions, and halt thresholds affect
+  the result across baseline and critical-incident conditions.
 - **Tamper-evident decisions.** Generated audit events form a SHA-256 hash chain;
   modifying an earlier event invalidates the ledger.
 - **Cross-framework traceability.** Controls link to the EU AI Act, NIST AI RMF,
@@ -86,7 +93,7 @@ npm run check
 npm run audit
 ```
 
-The first command validates the case, runs eight deterministic tests, reproduces
+The first command validates the case, runs eleven deterministic tests, reproduces
 the full audit, and proves that fresh output exactly matches the committed
 results. The second writes the human- and machine-readable artifacts to
 `reports/generated/`.
@@ -104,6 +111,7 @@ node src/cli.ts audit path/to/case.json --out path/to/output
 | [`executive-report.md`](reports/generated/executive-report.md) | Decision memo, control results, shocks, and critical evidence |
 | [`audit-results.json`](reports/generated/audit-results.json) | Complete machine-readable evaluation |
 | [`stress-matrix.csv`](reports/generated/stress-matrix.csv) | Scenario matrix for analysis or BI tooling |
+| [`policy-sensitivity.csv`](reports/generated/policy-sensitivity.csv) | Complete two-scenario, 54-cell policy grid |
 | [`assurance-case.mmd`](reports/generated/assurance-case.mmd) | Renderable claim-control-evidence graph |
 | [`audit-ledger.jsonl`](reports/generated/audit-ledger.jsonl) | Verifiable SHA-256 decision history |
 
@@ -149,6 +157,8 @@ review before any real-world use.
 
 - [Architecture](docs/architecture.md)
 - [Scoring and Stress Method](docs/methodology.md)
+- [Research Protocol](docs/research-protocol.md)
+- [Threats to Validity](docs/threats-to-validity.md)
 - [Framework Notes and Limitations](docs/framework-notes.md)
 - [Contributing](CONTRIBUTING.md)
 

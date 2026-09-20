@@ -1,9 +1,12 @@
 import { sha256 } from "./canonical.ts";
-import { evaluate } from "./evaluator.ts";
+import { DEFAULT_POLICY, evaluate } from "./evaluator.ts";
 import type {
   AISystemCase,
   AuditBundle,
+  EvidenceCutSet,
   EvidenceCriticality,
+  PolicySensitivityCell,
+  ResearchAnalysis,
   Shock,
   ShockResult,
 } from "./types.ts";
@@ -94,6 +97,105 @@ function evidenceCriticality(
     .sort((left, right) => right.riskDelta - left.riskDelta);
 }
 
+function invalidateEvidence(input: AISystemCase, evidenceIds: string[]): AISystemCase {
+  const changed = cloneCase(input);
+  for (const evidence of changed.evidence) {
+    if (evidenceIds.includes(evidence.id)) evidence.unavailable = true;
+  }
+  return changed;
+}
+
+function minimalEvidenceCutSets(input: AISystemCase): EvidenceCutSet[] {
+  const identifiers = input.evidence.map((item) => item.id);
+  const cutSets: EvidenceCutSet[] = [];
+  for (let size = 1; size <= 2; size += 1) {
+    const candidates: string[][] = [];
+    if (size === 1) {
+      candidates.push(...identifiers.map((id) => [id]));
+    } else {
+      for (let left = 0; left < identifiers.length; left += 1) {
+        for (let right = left + 1; right < identifiers.length; right += 1) {
+          candidates.push([identifiers[left], identifiers[right]]);
+        }
+      }
+    }
+    for (const evidenceIds of candidates) {
+      const containsKnownCut = cutSets.some((cutSet) =>
+        cutSet.evidenceIds.every((id) => evidenceIds.includes(id)),
+      );
+      if (containsKnownCut) continue;
+      const result = evaluate(invalidateEvidence(input, evidenceIds));
+      if (result.decision === "HALT") {
+        cutSets.push({
+          evidenceIds,
+          size,
+          residualRisk: result.residualRisk,
+          failedControls: result.controls
+            .filter((item) => item.status === "FAIL")
+            .map((item) => item.id),
+        });
+      }
+    }
+  }
+  return cutSets;
+}
+
+function policySensitivity(input: AISystemCase): ResearchAnalysis["policySensitivity"] {
+  const incident = input.shocks.find((item) => item.id === "SH-INCIDENT");
+  if (!incident) throw new Error("Research sensitivity requires SH-INCIDENT");
+  const scenarios = [
+    { id: "baseline", case: input },
+    { id: "critical-incident", case: applyShock(input, incident) },
+  ];
+  const cells: PolicySensitivityCell[] = [];
+  for (const scenario of scenarios) {
+    for (const internalEvidenceDiscount of [0.75, 0.86, 1]) {
+      for (const riskReductionScale of [40, 46, 52]) {
+        for (const haltRiskThreshold of [45, 55, 65]) {
+          const result = evaluate(scenario.case, {
+            ...DEFAULT_POLICY,
+            internalEvidenceDiscount,
+            riskReductionScale,
+            haltRiskThreshold,
+          });
+          cells.push({
+            scenario: scenario.id,
+            internalEvidenceDiscount,
+            riskReductionScale,
+            haltRiskThreshold,
+            decision: result.decision,
+            assuranceScore: result.assuranceScore,
+            residualRisk: result.residualRisk,
+          });
+        }
+      }
+    }
+  }
+  const decisionCounts = Object.fromEntries(
+    ["APPROVE", "APPROVE_WITH_CONDITIONS", "HALT"].map((decision) => [
+      decision,
+      cells.filter((item) => item.decision === decision).length,
+    ]),
+  );
+  const assurance = cells.map((item) => item.assuranceScore);
+  const risk = cells.map((item) => item.residualRisk);
+  return {
+    configurationsPerScenario: cells.length / scenarios.length,
+    scenarios: scenarios.map((item) => item.id),
+    decisionCounts,
+    assuranceRange: [Math.min(...assurance), Math.max(...assurance)],
+    residualRiskRange: [Math.min(...risk), Math.max(...risk)],
+    cells,
+  };
+}
+
+function runResearchAnalysis(input: AISystemCase): ResearchAnalysis {
+  return {
+    minimalEvidenceCutSets: minimalEvidenceCutSets(input),
+    policySensitivity: policySensitivity(input),
+  };
+}
+
 export function runAudit(input: AISystemCase): AuditBundle {
   const baseline = evaluate(input);
   const singles = input.shocks.map((shock) =>
@@ -132,5 +234,6 @@ export function runAudit(input: AISystemCase): AuditBundle {
       baseline.decision,
       baseline.residualRisk,
     ),
+    research: runResearchAnalysis(input),
   };
 }

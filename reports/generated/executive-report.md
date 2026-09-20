@@ -78,6 +78,34 @@ documents.
 | EV-004 — External subgroup outcome audit | +2 | Yes | FAIR-03 |
 | EV-006 — Observed human-override simulation | +1.2 | No | HUM-04 |
 
+## Minimal Evidence Cut Sets
+
+A cut set is the smallest set of unavailable evidence records that forces a
+`HALT`; no proper subset has the same effect. Searching all single and pairwise
+evidence removals found **6**
+minimal cut sets.
+
+| Evidence Cut Set | Size | Residual Risk | Failed Controls |
+| --- | ---: | ---: | --- |
+| EV-003 | 1 | 30.5 | DATA-02 |
+| EV-004 | 1 | 28.5 | FAIR-03 |
+| EV-005 + EV-006 | 2 | 32.7 | HUM-04 |
+| EV-005 + EV-011 | 2 | 28.8 | FAIR-03 |
+| EV-007 + EV-008 | 2 | 31.5 | MON-05 |
+| EV-009 + EV-010 | 2 | 30.9 | SEC-06 |
+
+## Policy Sensitivity Experiment
+
+The same cases were evaluated across **27 policy configurations per scenario** (54 total). The grid varies the internal-evidence discount, risk-reduction scale, and halt threshold rather than hiding these normative choices inside one score.
+
+| Outcome Across Grid | Count |
+| --- | ---: |
+| APPROVE | 0 |
+| APPROVE_WITH_CONDITIONS | 48 |
+| HALT | 6 |
+
+Assurance ranges from **84.6% to 92.3%** and residual risk from **20 to 52.2**. The complete grid is committed as `policy-sensitivity.csv` so reviewers can inspect every configuration.
+
 ## Interpretation
 
 The lab models governance as a falsifiable assurance argument. A control only

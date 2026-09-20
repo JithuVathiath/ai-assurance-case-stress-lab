@@ -60,6 +60,31 @@ decision, and records risk change, affected controls, and whether the deployment
 decision changed. This turns evidence inventory into decision-criticality
 analysis.
 
+## Minimal Evidence Cut Sets
+
+The research extension enumerates every single evidence removal and every
+two-evidence combination. A combination is retained only when it forces `HALT`
+and no already discovered proper subset also forces `HALT`. This produces an
+irreducible set of governance failure paths rather than a list inflated by
+supersets of known failures.
+
+The executed case searches 66 pairwise combinations in addition to 11 single
+removals and identifies six minimal cut sets. The search is exhaustive only up
+to size two; higher-order cut sets remain outside the declared scope.
+
+## Policy Sensitivity
+
+The default policy parameters are explicit constants rather than hidden
+assumptions. A deterministic grid varies:
+
+- internal-evidence discount: 0.75, 0.86, and 1.00;
+- residual-risk reduction scale: 40, 46, and 52; and
+- halt threshold: 45, 55, and 65.
+
+The 27 configurations are evaluated on both the baseline and simulated critical-
+incident case, producing 54 cells. This is a structured robustness analysis of
+normative policy choices; it is not a statistical confidence interval.
+
 ## Reproducibility
 
 The evaluation date is part of the case rather than the wall-clock runtime.

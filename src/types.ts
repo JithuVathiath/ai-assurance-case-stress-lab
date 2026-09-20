@@ -2,6 +2,16 @@ export type Decision = "APPROVE" | "APPROVE_WITH_CONDITIONS" | "HALT";
 export type ControlStatus = "PASS" | "AT_RISK" | "FAIL";
 export type Severity = "low" | "medium" | "high" | "critical";
 
+export interface EvaluationPolicy {
+  internalEvidenceDiscount: number;
+  claimWeight: number;
+  factWeight: number;
+  riskReductionScale: number;
+  haltRiskThreshold: number;
+  conditionalRiskThreshold: number;
+  criticalControlFloor: number;
+}
+
 export interface FrameworkReference {
   framework: "EU AI Act" | "NIST AI RMF" | "ISO/IEC 42001";
   references: string[];
@@ -157,10 +167,40 @@ export interface EvidenceCriticality {
   controlsAffected: string[];
 }
 
+export interface EvidenceCutSet {
+  evidenceIds: string[];
+  size: number;
+  residualRisk: number;
+  failedControls: string[];
+}
+
+export interface PolicySensitivityCell {
+  scenario: string;
+  internalEvidenceDiscount: number;
+  riskReductionScale: number;
+  haltRiskThreshold: number;
+  decision: Decision;
+  assuranceScore: number;
+  residualRisk: number;
+}
+
+export interface ResearchAnalysis {
+  minimalEvidenceCutSets: EvidenceCutSet[];
+  policySensitivity: {
+    configurationsPerScenario: number;
+    scenarios: string[];
+    decisionCounts: Record<string, number>;
+    assuranceRange: [number, number];
+    residualRiskRange: [number, number];
+    cells: PolicySensitivityCell[];
+  };
+}
+
 export interface AuditBundle {
   generatedAt: string;
   caseFingerprint: string;
   baseline: Evaluation;
   shocks: ShockResult[];
   evidenceCriticality: EvidenceCriticality[];
+  research: ResearchAnalysis;
 }

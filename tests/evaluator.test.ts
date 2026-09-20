@@ -48,3 +48,46 @@ test("critical incident raises risk without silently changing evidence", () => {
 test("audit is deterministic for an identical case", () => {
   assert.deepEqual(runAudit(fixture), runAudit(structuredClone(fixture)));
 });
+
+test("research analysis finds minimal governance failure cut sets", () => {
+  const research = runAudit(fixture).research;
+  assert.equal(research.minimalEvidenceCutSets.length, 6);
+  assert.ok(
+    research.minimalEvidenceCutSets.some(
+      (item) => item.evidenceIds.join("+") === "EV-009+EV-010",
+    ),
+  );
+  assert.ok(
+    research.minimalEvidenceCutSets.every(
+      (item) => item.size === item.evidenceIds.length && item.failedControls.length > 0,
+    ),
+  );
+});
+
+test("policy sensitivity makes normative choices observable", () => {
+  const sensitivity = runAudit(fixture).research.policySensitivity;
+  assert.equal(sensitivity.configurationsPerScenario, 27);
+  assert.equal(sensitivity.cells.length, 54);
+  assert.deepEqual(sensitivity.decisionCounts, {
+    APPROVE: 0,
+    APPROVE_WITH_CONDITIONS: 48,
+    HALT: 6,
+  });
+  assert.deepEqual(sensitivity.residualRiskRange, [20, 52.2]);
+});
+
+test("invalid policy weights fail closed", () => {
+  assert.throws(
+    () =>
+      evaluate(fixture, {
+        internalEvidenceDiscount: 0.86,
+        claimWeight: 0.7,
+        factWeight: 0.4,
+        riskReductionScale: 46,
+        haltRiskThreshold: 65,
+        conditionalRiskThreshold: 38,
+        criticalControlFloor: 4,
+      }),
+    /sum to one/,
+  );
+});
